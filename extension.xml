@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+  	Author: Ryan Hagelstrom
+	Copyright � 2022
+	This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+	https://creativecommons.org/licenses/by-sa/4.0/
+-->
+<root release="3.0" version="3">
+	<!-- <announcement text="5E - Fatigued v1.0\rby Ryan Hagelstrom 2021-2022" font="emotefont" icon="Fatigued"/> -->
+	<announcement text="5E - Fatigued v1.0\rby Ryan Hagelstrom 2022" font="emotefont" />
+	<properties>
+    	<loadorder>120</loadorder>
+		<name>Feature: Fatigued</name>
+		<version>1.14</version>
+		<author>Ryan Hagelstrom</author>
+		<description>Adds a combat fatigue stack house rule</description>
+		<ruleset>
+            <name>5E</name>
+		</ruleset>
+	</properties>
+	<base>
+    	<!-- <icon name="Fatigued" file="graphics/icons/fatigued.png"></icon> -->
+    	<includefile source="strings/strings_fatigued.xml" />
+    	<script name="Fatigued" file="scripts/manager_effect_fatigued.lua" />
+  	</base>
+</root>
