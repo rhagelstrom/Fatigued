@@ -266,7 +266,7 @@ function customOutputResult(bSecret, rSource, rOrigin, msgLong, msgShort)
 end
 
 function customOnCastSave(rSource, rTarget, rRoll)
-	local nFatiguedMod, nFatiguedCount = getEffectsBonus(rSource, {"FATIGUED"}, true);
+	local nFatiguedMod, nFatiguedCount = EffectManager5E.getEffectsBonus(rSource, {"FATIGUED"}, true);
 	if nFatiguedCount > 0 and nFatiguedMod >= 1 then
 		rRoll.nMod = rRoll.nMod - nFatiguedMod
 		local sSubString = rRoll.sDesc:match("%[%s*%a+%s*DC%s*%d+%]"):gsub("%[", "%%[")
