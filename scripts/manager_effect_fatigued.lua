@@ -12,9 +12,7 @@ local skillModRoll = nil
 local initModRoll = nil
 local modAttack = nil
 local modSave = nil
-local getEffectsBonus = nil
 local onCastSave = nil
-local onDeathRoll = nil
 local outputResult = nil
 
 local bCritDeathSuccess = false
@@ -39,7 +37,6 @@ function onTabletopInit()
 	onCastSave = ActionPower.onCastSave
 	outputResult = ActionsManager.outputResult
 	initModRoll = ActionInit.modRoll
-	onDeathRoll = ActionSave.onDeathRoll
 
 	ActionCheck.modRoll = customCheckModRoll
 	ActionSkill.modRoll = customSkillModRoll
@@ -48,18 +45,14 @@ function onTabletopInit()
 	ActionPower.onCastSave = customOnCastSave
 	ActionsManager.outputResult = customOutputResult
 	ActionInit.modRoll = customModInit
-	ActionSave.onDeathRoll = customOnDeathRoll
 
 	ActionsManager.registerModHandler("check", customCheckModRoll)
 	ActionsManager.registerModHandler("skill", customSkillModRoll)
 	ActionsManager.registerModHandler("attack",customModAttack)
 	ActionsManager.registerModHandler("save", customModSave)
 	ActionsManager.registerModHandler("concentration", customModSave)
-	ActionsManager.registerModHandler("systemshock", customModSave)
 	ActionsManager.registerModHandler("init", customModInit)
 
-	ActionsManager.registerResultHandler("death", customOnDeathRoll)
-	ActionsManager.registerResultHandler("death_auto", customOnDeathRoll)
 end
 
 function onClose()
@@ -80,7 +73,6 @@ function onClose()
 	ActionsManager.registerModHandler("attack",ActionAttack.modAttack)
 	ActionsManager.registerModHandler("save", ActionSave.modSave)
 	ActionsManager.registerModHandler("concentration", ActionSave.modSave)
-	ActionsManager.registerModHandler("systemshock", ActionSave.modSave)
 	ActionsManager.registerModHandler("init", ActionInit.modRoll)
 end
 
@@ -302,19 +294,3 @@ function customModInit(rSource, rTarget, rRoll)
 	modFatigued(rSource, rTarget, rRoll)
 	return initModRoll(rSource, rTarget, rRoll)
 end
-
-function customOnDeathRoll(rSource, rTarget, rRoll)
-	ActionsManager2.decodeAdvantage(rRoll);
-	if ActorHealthManager.getWoundPercent(rSource) >= 1 then
-		local nFirstDie = 0;
-		if #(rRoll.aDice) > 0 then
-			nFirstDie = rRoll.aDice[1].result or 0;
-		end
-		if nFirstDie == 20 then
-			removeFatigued(ActorManager.getCTNode(rSource))
-			bCritDeathSuccess = true
-		end
-	end
-	onDeathRoll(rSource, rTarget, rRoll)
-end
-

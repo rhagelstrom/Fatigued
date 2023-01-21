@@ -7,11 +7,11 @@
 -->
 <root release="3.0" version="3">
 	<!-- <announcement text="5E - Fatigued v1.0\rby Ryan Hagelstrom 2021-2022" font="emotefont" icon="Fatigued"/> -->
-	<announcement text="5E - Fatigued v1.1\rby Ryan Hagelstrom 2022" font="emotefont" />
+	<announcement text="5E - Fatigued v1.2\rby Ryan Hagelstrom 2022-2023" font="emotefont" />
 	<properties>
     	<loadorder>120</loadorder>
 		<name>Feature: Fatigued</name>
-		<version>1.1</version>
+		<version>1.2</version>
 		<author>Ryan Hagelstrom</author>
 		<description>Adds a combat fatigue stack house rule</description>
 		<ruleset>
